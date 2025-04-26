@@ -37,50 +37,79 @@ class MentalHealthAI:
             print(f"Error generating title: {e}")
             # Provide a default title if generation fails
             return "Mental Health Conversation"
-
+    
     @staticmethod
     def get_conversation_chain():
         """Create a mental health focused conversational chain using the OpenAI API"""
         def process_query(question: str, history: List[Dict] = None):
             try:
                 messages = []
-                
-                # System message to guide the AI as a mental health assistant
+
+                # System message to guide the AI
                 messages.append({
                     "role": "system",
                     "content": """You are an empathetic mental health assistant. Your role is to listen carefully, 
                     understand the person's concerns, and provide supportive, helpful responses. Respond in a warm, 
-                    conversational manner while maintaining professionalism. Remember to:
-                    
+                    conversational manner while maintaining professionalism. VERY IMPORTANT: Maintain full memory of the 
+                    entire conversation history to provide consistent, contextually relevant responses. Remember to:
+
                     1. Show empathy and understanding
                     2. Ask clarifying questions when appropriate
                     3. Provide evidence-based information and suggestions
                     4. Emphasize that you're an AI and not a replacement for professional mental health care
                     5. Encourage seeking professional help when needed
-                    
+                    6. Reference previous parts of the conversation when relevant
+
                     Always prioritize the person's wellbeing and safety in your responses.
                     """
                 })
-                
-                # Add conversation history if available
+
+                # Add ALL conversation history if available
                 if history:
                     for item in history:
                         messages.append({"role": "user", "content": item["query_text"]})
                         messages.append({"role": "assistant", "content": item["response_text"]})
-                
+
                 # Add the current question
                 messages.append({"role": "user", "content": question})
-                
-                # Get response from OpenAI
+
+                # Get response from OpenAI with increased token limit
                 response = client.chat.completions.create(
                     model="gpt-4o",
-                    messages=messages
+                    messages=messages,
+                    max_tokens=1000  # Increase token limit for longer responses
                 )
-                
+
                 return {"answer": response.choices[0].message.content}
             except Exception as e:
-                raise HTTPException(status_code=500, detail=f"Error processing query: {str(e)}")
-        
+                # If context is too long, try with truncated history
+                if "maximum context length" in str(e).lower():
+                    # Keep only the most recent 10 exchanges if history is too long
+                    truncated_history = history[-10:] if history and len(history) > 10 else history
+                    messages = [
+                        {
+                            "role": "system",
+                            "content": """You are an empathetic mental health assistant with memory of previous conversations.
+                            Due to technical limitations, only the most recent portion of the conversation history is available,
+                            but please maintain continuity as best as possible. [Same guidelines as above]"""
+                        }
+                    ]
+
+                    if truncated_history:
+                        for item in truncated_history:
+                            messages.append({"role": "user", "content": item["query_text"]})
+                            messages.append({"role": "assistant", "content": item["response_text"]})
+
+                    messages.append({"role": "user", "content": question})
+
+                    response = client.chat.completions.create(
+                        model="gpt-4o",
+                        messages=messages
+                    )
+                    return {"answer": response.choices[0].message.content}
+                else:
+                    raise HTTPException(status_code=500, detail=f"Error processing query: {str(e)}")
+
         return {"invoke": process_query}
 
     @staticmethod

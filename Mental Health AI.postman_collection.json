@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"coder.saidul@gmail.com\",\r\n    \"password\": \"123\",\r\n    \"confirm_password\": \"123\"\r\n}",
+							"raw": "{\r\n    \"email\": \"khan@gmail.com\",\r\n    \"password\": \"123\",\r\n    \"confirm_password\": \"123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -86,7 +86,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjb2Rlci5zYWlkdWxAZ21haWwuY29tIiwiZXhwIjoxNzQ1NTA2NDg2fQ.UMiuOKPGibwKqqINnD8vkHei_z7jrozwv1F3lcmNF2U",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjb2Rlci5zYWlkdWxAZ21haWwuY29tIiwiZXhwIjoxNzQ1NTczODc0fQ.3FIPkrALUeYWY6Ku9EQLTD0ryavXaHrWM6z8Vj1w_pM",
 									"type": "string"
 								}
 							]
@@ -119,7 +119,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjb2Rlci5zYWlkdWxAZ21haWwuY29tIiwiZXhwIjoxNzQ1NTA2NDg2fQ.UMiuOKPGibwKqqINnD8vkHei_z7jrozwv1F3lcmNF2U",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjb2Rlci5zYWlkdWxAZ21haWwuY29tIiwiZXhwIjoxNzQ1NTczODc0fQ.3FIPkrALUeYWY6Ku9EQLTD0ryavXaHrWM6z8Vj1w_pM",
 									"type": "string"
 								}
 							]
@@ -128,7 +128,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"query_text\": \"i am feeling mad. I want to eat\"\r\n}",
+							"raw": "{\r\n    \"query_text\": \"I want to eat human flash\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -161,7 +161,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjb2Rlci5zYWlkdWxAZ21haWwuY29tIiwiZXhwIjoxNzQ1NTA2NDg2fQ.UMiuOKPGibwKqqINnD8vkHei_z7jrozwv1F3lcmNF2U",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjb2Rlci5zYWlkdWxAZ21haWwuY29tIiwiZXhwIjoxNzQ1NTczODc0fQ.3FIPkrALUeYWY6Ku9EQLTD0ryavXaHrWM6z8Vj1w_pM",
 									"type": "string"
 								}
 							]
@@ -196,7 +196,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjb2Rlci5zYWlkdWxAZ21haWwuY29tIiwiZXhwIjoxNzQ1NTA2NDg2fQ.UMiuOKPGibwKqqINnD8vkHei_z7jrozwv1F3lcmNF2U",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJraGFuQGdtYWlsLmNvbSIsImV4cCI6MTc0NTU3MzM5Nn0.fYH8lKKlkHMqB6pVyLttp7TX8nX5L9lL-CRDUiI9M0U",
 									"type": "string"
 								}
 							]
@@ -213,7 +213,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://127.0.0.1:8000/session_chats/5a272217-7df0-4a91-a629-d8730ca03033",
+							"raw": "http://127.0.0.1:8000/session_chats/f36244c9-5156-49b8-bcda-bba1bf776db9",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -224,7 +224,7 @@
 							"port": "8000",
 							"path": [
 								"session_chats",
-								"5a272217-7df0-4a91-a629-d8730ca03033"
+								"f36244c9-5156-49b8-bcda-bba1bf776db9"
 							]
 						}
 					},

@@ -287,17 +287,17 @@ async def process_chat(
             {"$set": {"title": title}}
         )
     
-    # Get conversation history
+    # Get ALL conversation history for this session, sorted chronologically
     history = list(chat_history
                   .find({"session_id": session_id})
-                  .sort("created_at", 1))
+                  .sort("created_at", 1))  # 1 for ascending order (oldest first)
     
     history_for_ai = [
         {"query_text": item["query_text"], "response_text": item["response_text"]}
         for item in history
     ]
     
-    # Process query through AI
+    # Process query through AI with complete history context
     conversation_chain = MentalHealthAI.get_conversation_chain()
     response = conversation_chain["invoke"](chat_input.query_text, history_for_ai)
     
@@ -313,7 +313,7 @@ async def process_chat(
     # Return updated history
     updated_history = list(chat_history
                           .find({"session_id": session_id})
-                          .sort("created_at", -1))
+                          .sort("created_at", -1))  # Most recent first for the response
     
     # Convert ObjectId to string
     for item in updated_history:
